@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de Boletos para Paul McCartney</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="icon" href="../assets/img/Logotipo_Final.png" type="image/x-icon">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .menu-button {
+            font-size: 24px;
+            cursor: pointer;
+            position: relative;
+            z-index: 11;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #000;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover, .dropdown-content a.active {
+            background-color: #575757;
+        }
+
+        .title {
+            font-size: 18px;
+            margin: 0 10px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .profile-icon {
+            font-size: 24px;
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .username {
+            font-size: 16px;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            background-color: #f0f0f0;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px 40px;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            left: 10%; 
+            right: 10%;
+            height: 2px;
+            background-color: #ccc;
+            top: 50%;
+            z-index: 0;
+        }
+
+        .step {
+            text-align: center;
+            flex-grow: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step i {
+            background-color: #ddd;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 24px;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .step p {
+            margin: 8px 0 0;
+            font-size: 14px;
+        }
+
+        .step.active i {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .container {
+            text-align: center;
+            padding-top: 2%;
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+
+        .container h1 {
+            color: #FFA500;
+            margin-bottom: 20px;
+        }
+
+        .fan-id {
+            font-size: 28px;
+        }
+
+        .action-button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .action-button.blue {
+            background-color: #007BFF;
+        }
+
+        .action-button.blue:hover {
+            background-color: #0056b3;
+        }
+
+        .action-button.green {
+            background-color: #28A745;
+        }
+
+        .action-button.green:hover {
+            background-color: #1e7e34;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu-button" id="menuButton">&#9776;</div>
+        <div class="dropdown-content" id="dropdownMenu">
+            <a href="HomePage.html">Inicio</a>
+            <a href="Ver_Eventos.html" >Eventos</a>
+            <a href="#" class="active">Compra</a>
+            <a href="Mis_Solicitudes.html">Mis solicitudes</a>
+            <a href="Mis_Boletos.html">Mis boletos</a>
+            <a href="Boletos_Pendientes.html">Boletos pendientes</a>
+        </div>
+        <div class="title">Proceso de Compra</div>
+        <div class="user-profile">
+            <i class="fas fa-user profile-icon"></i>
+            <span class="username">Nombre de Usuario <br> Cerrar Sesión</span>        </div>
+    </header>
+    
+    <div class="progress-bar">
+        <div class="step">
+            <a href="PagoBoleto_InformacionDelBoleto.html"><i class="fa fa-ticket-alt"></i></a>
+            <p>Información del Boleto</p>
+        </div>
+        <div class="step">
+            <a href="PagoBoleto_SeleccionarAsiento.html"><i class="fa fa-couch"></i></a>
+            <p>Seleccionar Asiento</p>
+        </div>
+        <div class="step">
+            <a href="PagoBoleto_MetodoPago.html"><i class="fa fa-credit-card"></i></a>
+            <p>Método de Pago</p>
+        </div>
+        <div class="step">
+            <a href="PagoBoleto_GenerarFanID.html"><i class="fa fa-id-badge"></i></a>
+            <p>Generar FanID</p>
+        </div>
+        <div class="step active">
+            <a href="PagoBoleto_FinalizarCompra.html"><i class="fa fa-check-circle"></i></a>
+            <p>Finalizar Compra</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Se ha generado con éxito tu FAN ID</h1>
+        <p class="fan-id">Fan ID: RACW0502QMMCSHNA9</p>
+        <button class="action-button blue" id="toggleDetails">Revisar Detalles</button>
+        <button class="action-button green" onclick="window.location.href='HomePage.html'">Finalizar</button>
+    </div>
+
+    <!-- Modal de Detalles -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Detalles del Evento</h2>
+            <p><strong>Evento:</strong> Paul McCartney Got Back</p>
+            <p><strong>Lugar:</strong> Estadio C.U, Avenida de los Insurgentes, Ciudad de México, CP 04510</p>
+            <p><strong>Fecha y hora:</strong> 4 Mayo 2024, 20:00 hrs</p>
+            <p><strong>Sección y fila:</strong> Sección E500, Fila K</p>
+            <p><strong>Total:</strong> $3000.00</p>
+            <button class="action-button green" onclick="closeModal()">Cerrar</button>
+        </div>
+    </div>
+    <script src="../js/PagoBoleto_FinalizarCompra.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuButton = document.getElementById('menuButton');
+            var dropdownMenu = document.getElementById('dropdownMenu');
+
+            function showMenu() {
+                dropdownMenu.style.display = 'block';
+            }
+
+            function hideMenu() {
+                dropdownMenu.style.display = 'none';
+            }
+
+            menuButton.addEventListener('mouseenter', showMenu);
+            menuButton.addEventListener('mouseleave', function() {
+                setTimeout(function() {
+                    if (!dropdownMenu.matches(':hover')) {
+                        hideMenu();
+                    }
+                }, 200);
+            });
+
+            dropdownMenu.addEventListener('mouseenter', showMenu);
+            dropdownMenu.addEventListener('mouseleave', hideMenu);
+
+            document.getElementById('toggleDetails').addEventListener('click', function() {
+                document.getElementById('detailsModal').style.display = 'block';
+            });
+
+            document.querySelector('.close').addEventListener('click', function() {
+                document.getElementById('detailsModal').style.display = 'none';
+            });
+
+            function closeModal() {
+                document.getElementById('detailsModal').style.display = 'none';
+            }
+
+            window.closeModal = closeModal;
+        });
+    </script>
+</body>
+</html>
