@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Eventos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="icon" href="../assets/img/Logotipo_Final.png" type="image/x-icon">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .menu-button {
+            font-size: 24px;
+            cursor: pointer;
+            position: relative;
+            z-index: 11;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #000;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover, .dropdown-content a.active {
+            background-color: #575757;
+        }
+
+        .title {
+            font-size: 18px;
+            margin: 0 10px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .profile-icon {
+            font-size: 24px;
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .username {
+            font-size: 16px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            justify-content: space-between;
+            height: calc(100vh - 50px); 
+        }
+
+        .box {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .box:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        .box h2 {
+            margin: 10px 0;
+        }
+
+        .box p {
+            margin: 0;
+            color: #555;
+        }
+
+        .box i {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .large-box {
+            width: 45%;
+            height: calc(100% - 110px); 
+        }
+
+        .right-container {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: calc(100% - 110px); 
+        }
+
+        .small-box {
+            width: 48%;
+            height: calc(110% - 20px);
+            flex: 1;
+        }
+
+        .medium-box {
+            width: 90%;
+            height: calc(33.33% - 20px); 
+            flex: 2;
+            margin-bottom: 10px;
+        }
+
+        .small-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel img.inactive {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu-button" id="menuButton">&#9776;</div>
+        <div class="dropdown-content" id="dropdownMenu">
+            <a href="#" class="active">Inicio</a>
+            <a href="Eventos_Organizador.html">Eventos</a>
+            <a href="SubirEvento.html">Subir Eventos</a>
+            <a href="HomePage.html">Módulo Comprador</a>
+            
+        </div>
+        <div class="title">Eventos</div>
+        <div class="user-profile">
+            <i class="fas fa-user profile-icon"></i>
+            <span class="username">Nombre del Organizador <br> Cerrar Sesión </span>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="box large-box" onclick="window.location.href='Eventos_Organizador.html'">
+            <div class="carousel">
+                <img src="../assets/img/paul4.webp" alt="Evento 1" class="active">
+                <img src="../assets/img/U2.webp" alt="Evento 2" class="inactive">
+                <img src="../assets/img/Luis_Miguel.webp" alt="Evento 3" class="inactive">
+                <img src="../assets/img/Metallica.webp" alt="Evento 4" class="inactive">
+                <img src="../assets/img/Rolling_Stones.webp" alt="Evento 5" class="inactive">
+                <img src="../assets/img/Natalia_Lafourcade.jpg" alt="Evento 6" class="inactive">
+                <img src="../assets/img/Noel_Gallagher.webp" alt="Evento 7" class="inactive">
+                <img src="../assets/img/Iron_Maiden.jpg" alt="Evento 8" class="inactive">
+                <img src="../assets/img/Foo_Fighters.jpg" alt="Evento 9" class="inactive">
+                <img src="../assets/img/Formula_1.jpg" alt="Evento 10" class="inactive">
+                <img src="../assets/img/Angeles_Azules.webp" alt="Evento 11" class="inactive">
+                <img src="../assets/img/Eric_Clapton.jpg" alt="Evento 12" class="inactive">
+                <img src="../assets/img/Ringo_Starr.webp" alt="Evento 13" class="inactive">
+            </div>
+            <h2>Eventos</h2>
+            <p>Información sobre eventos.</p>
+        </div>
+        <div class="box large-box" onclick="window.location.href='SubirEvento.html'">
+            <div class="carousel">
+                <img src="../assets/img/Estadio_Azteca.webp" alt="Estadio Azteca" class="active">
+                <img src="../assets/img/Estadio_Olimpico_Universitario.webp" alt="Estadio Olímpico Universitario" class="inactive">
+                <img src="../assets/img/Estadio_Azul.webp" alt="Estadio Ciudad de los Deportes" class="inactive">
+                <img src="../assets/img/Foro_Sol.webp" alt="Foro Sol" class="inactive">
+                <img src="../assets/img/Estadio_Nemesio_Diez.webp" alt="Estadio Nemesio Díez" class="inactive">
+                <img src="../assets/img/Estadio_Cuauhtemoc.webp" alt="Estadio Cuauhtémoc" class="inactive">
+                <img src="../assets/img/Estadio_La_Corregidora.webp" alt="Estadio La Corregidora" class="inactive">
+                <img src="../assets/img/Estadio_Wilfrido_Massieu.webp" alt="Estadio Wilfrido Massieu" class="inactive">
+                <img src="../assets/img/Estadio_Fray_Nano.webp" alt="Estadio Fray Nano" class="inactive">
+                <img src="../assets/img/Estadio_Los_Pinos.webp" alt="Estadio Los Pinos" class="inactive">
+            </div>
+            <h2>Subir Eventos</h2>
+            <p>Creación de eventos.</p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuButton = document.getElementById('menuButton');
+            var dropdownMenu = document.getElementById('dropdownMenu');
+
+            function showMenu() {
+                dropdownMenu.style.display = 'block';
+            }
+
+            function hideMenu() {
+                dropdownMenu.style.display = 'none';
+            }
+
+            menuButton.addEventListener('mouseenter', showMenu);
+            menuButton.addEventListener('mouseleave', function() {
+                setTimeout(function() {
+                    if (!dropdownMenu.matches(':hover')) {
+                        hideMenu();
+                    }
+                }, 200);
+            });
+
+            dropdownMenu.addEventListener('mouseenter', showMenu);
+            dropdownMenu.addEventListener('mouseleave', hideMenu);
+
+            var carousels = document.querySelectorAll('.carousel');
+            var totalImages = carousels[0].querySelectorAll('img').length;
+            var currentIndex = 0;
+
+            setInterval(function() {
+                carousels.forEach(function(carousel) {
+                    var images = carousel.querySelectorAll('img');
+                    images[currentIndex].classList.add('inactive');
+                    currentIndex = (currentIndex + 1) % totalImages;
+                    images[currentIndex].classList.remove('inactive');
+                });
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
