@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compra de Boletos para Paul McCartney</title>
+    <title>Generar FanID</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="icon" href="../assets/img/Logotipo_Final.png" type="image/x-icon">
     <style>
@@ -339,26 +339,17 @@
             <a href="HomePage.html">Inicio</a>
             <a href="Ver_Eventos_C.html">Eventos</a>
             <a href="Generar_FanID.html">Generar FanID</a>
-            <a href="#" class="active">Compra</a>
+            <a href="PagoBoleto_InformacionDelBoleto.html" class="active">Compra</a>
             <a href="Mis_Solicitudes.html">Mis solicitudes</a>
             <a href="Mis_Boletos.html">Mis boletos</a>
-            <a href="Boletos_Pendientes.html">Boletos pendientes</a> 
-            <a href="Home_Organizador.html">Módulo de Organizador</a>
+            <a href="Boletos_Pendientes.html">Boletos pendientes</a>
         </div>
-        <div class="title">Proceso de Compra</div>
+        <div class="title">Generación de FanID</div>
         <div class="user-profile">
             <i class="fas fa-user profile-icon"></i>
             <span class="username">Nombre de Usuario <br> Cerrar Sesión</span>
         </div>
     </header>
-
-    <div class="progress-bar">
-        <div class="step"><i class="fa fa-ticket-alt"></i><p>Información del Boleto</p></div>
-        <div class="step"><i class="fa fa-couch"></i><p>Seleccionar Asiento</p></div>
-        <div class="step"><i class="fa fa-credit-card"></i><p>Método de Pago</p></div>
-        <div class="step active"><i class="fa fa-id-badge"></i><p>Generar FanID</p></div>
-        <div class="step"><i class="fa fa-check-circle"></i><p>Finalizar Compra</p></div>
-    </div>
 
     <div class="container">
         <div class="form-section">
@@ -425,7 +416,7 @@
             var btnSiguiente = document.querySelector('.next-button');
             btnSiguiente.addEventListener('click', function(event) {
                 event.preventDefault();
-                window.location.href = '../html/PagoBoleto_FinalizarCompra.html';
+                window.location.href = '../html/HomePage.html';
             });
 
             var fanidItems = document.querySelectorAll('.fanid-item');
@@ -440,7 +431,7 @@
                     notification.style.display = 'block';
                     setTimeout(function() {
                         notification.style.display = 'none';
-                        window.location.href = 'PagoBoleto_FinalizarCompra.html';
+                        window.location.href = 'HomePage.html';
                     }, 2500);
                 });
             });
