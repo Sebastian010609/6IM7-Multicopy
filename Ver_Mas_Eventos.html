@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="icon" href="../assets/img/Logotipo_Final.png" type="image/x-icon">
+    <style>
+        /* General styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .menu-button {
+            font-size: 24px;
+            cursor: pointer;
+            position: relative;
+            z-index: 11;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #000;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover, .dropdown-content a.active {
+            background-color: #575757;
+        }
+
+        .title {
+            font-size: 18px;
+            margin: 0 10px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .profile-icon {
+            font-size: 24px;
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .username {
+            font-size: 16px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .event-card {
+            background:  #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px;
+            width: calc(33% - 40px);
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none; /* Añadido para que el enlace no tenga subrayado */
+            color: inherit; /* Mantener el color de texto original */
+            position: relative; /* Añadido para posicionar el icono */
+        }
+
+        .event-card:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        .event-card img {
+            border-radius: 8px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .event-card-content {
+            text-align: center;
+        }
+
+        .event-card p {
+            margin: 5px 0;
+        }
+
+        .warning-icon {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: #e74c3c;
+            border-radius: 50%;
+            padding: 10px;
+            color: #fff;
+            font-size: 16px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .event-card {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .event-card {
+                width: calc(100% - 20px);
+            }
+        }
+
+        .next-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff; 
+            color: white; 
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease; 
+        }
+
+        .next-button:hover {
+            background-color: #0056b3; 
+            transform: scale(1.05); 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu-button" id="menuButton">&#9776;</div>
+        <div class="dropdown-content" id="dropdownMenu">
+            <a href="HomePage.html">Inicio</a>
+            <a href="#" class="active">Eventos</a>
+            <a href="Generar_FanID.html">Generar FanID</a>
+            <a href="PagoBoleto_InformacionDelBoleto.html">Compra</a>
+            <a href="Mis_Solicitudes.html">Mis solicitudes</a>
+            <a href="Mis_Boletos.html">Mis boletos</a>
+            <a href="Boletos_Pendientes.html">Boletos pendientes</a>
+        </div>
+        <div class="title">Eventos</div>
+        <div class="user-profile">
+            <i class="fas fa-user profile-icon"></i>
+            <span class="username">Nombre de Usuario <br> Cerrar Sesión</span>        </div>
+    </header>
+
+    <div class="main-content">
+        <a href="Ringo_Starr.html" class="event-card">
+            <img src="../assets/img/Ringo_Starr.webp" alt="Evento Imagen">
+            <div class="event-card-content">
+                <p>Ringo Starr: Rewind Forward</p>
+                <p>Foro Sol</p>
+                <p>13/12/2024</p>
+            </div>
+            <div class="warning-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+        </a>
+        <a href="Formula_1.html" class="event-card">
+            <img src="../assets/img/Formula_1.jpg" alt="Evento Imagen">
+            <div class="event-card-content">
+                <p>Gran Premio F1</p>
+                <p>Foro Sol</p>
+                <p>20/09/2024</p>
+            </div>
+        </a>
+        <a href="Lafourcade_World_Tour.html" class="event-card">
+            <img src="../assets/img/Natalia_Lafourcade.jpg" alt="Evento Imagen">
+            <div class="event-card-content">
+                <p>Lafourcade World Tour</p>
+                <p>Pepsi Center</p>
+                <p>10/10/2024</p>
+            </div>
+        </a>
+        <a href="Clapton_Honor.html" class="event-card">
+            <img src="../assets/img/Eric_Clapton.jpg" alt="Evento Imagen">
+            <div class="event-card-content">
+                <p>Clapton: In Honor of my Son</p>
+                <p>Arena CDMX</p>
+                <p>18/11/2024</p>
+            </div>
+        </a>
+        <a href="Metallica_Touring.html" class="event-card">
+            <img src="../assets/img/Metallica.webp" alt="Evento Imagen">
+            <div class="event-card-content">
+                <p>Metallica: Poor Touring Me</p>
+                <p>Arena CDMX</p>
+                <p>22/07/2024</p>
+            </div>
+            <div class="warning-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+        </a>
+        <a href="Angeles_Azules.html" class="event-card">
+            <img src="../assets/img/Angeles_Azules.webp" alt="Evento Imagen">
+            <div class="event-card-content">
+                <p>Los Ángeles Azules</p>
+                <p>Auditorio Nacional</p>
+                <p>02/06/2024</p>
+            </div>
+            <div class="warning-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+        </a>
+    </div>
+
+    <footer>
+        <button class="next-button" onclick="window.location.href='Ver_Eventos_C.html'">Regresar</button>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuButton = document.getElementById('menuButton');
+            var dropdownMenu = document.getElementById('dropdownMenu');
+
+            function showMenu() {
+                dropdownMenu.style.display = 'block';
+            }
+
+            function hideMenu() {
+                dropdownMenu.style.display = 'none';
+            }
+
+            menuButton.addEventListener('mouseenter', showMenu);
+            menuButton.addEventListener('mouseleave', function() {
+                setTimeout(function() {
+                    if (!dropdownMenu.matches(':hover')) {
+                        hideMenu();
+                    }
+                }, 200);
+            });
+
+            dropdownMenu.addEventListener('mouseenter', showMenu);
+            dropdownMenu.addEventListener('mouseleave', hideMenu);
+        });
+    </script>
+</body>
+</html>

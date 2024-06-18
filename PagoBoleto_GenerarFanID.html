@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de Boletos para Paul McCartney</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="icon" href="../assets/img/Logotipo_Final.png" type="image/x-icon">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .menu-button {
+            font-size: 24px;
+            cursor: pointer;
+            position: relative;
+            z-index: 11;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #000;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown-content a:hover, .dropdown-content a.active {
+            background-color: #575757;
+        }
+        
+        .title {
+            font-size: 18px;
+            margin: 0 10px;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        
+        .profile-icon {
+            font-size: 24px;
+            color: #fff;
+            margin-right: 10px;
+        }
+        
+        .username {
+            font-size: 16px;
+        }
+        
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            background-color: #f0f0f0;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px 40px;
+        }
+        
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            left: 10%; 
+            right: 10%;
+            height: 2px;
+            background-color: #ccc;
+            top: 50%;
+            z-index: 0;
+        }
+        
+        .step {
+            text-align: center;
+            flex-grow: 1;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .step i {
+            background-color: #ddd;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 24px;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step p {
+            margin: 8px 0 0;
+            font-size: 14px;
+        }
+        
+        .step.active i {
+            background-color: #333;
+            color: #fff;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            margin: 20px;
+        }
+        
+        .form-section, .fanid-section {
+            width: 45%;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        form label {
+            font-weight: bold;
+        }
+        
+        form input {
+            margin-bottom: 10px;
+            width: calc(100% - 22px);
+            padding: 10px;
+        }
+        
+        form input[type="submit"] {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        form input[type="submit"]:hover {
+            background-color: #333;
+        }
+        
+        .next-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: transparent;
+            color: #000;
+            border: 2px solid #000;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .next-button:hover {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .btnSiguiente {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        
+        .next-button {
+            width: 100%;
+            padding: 10px 0;
+            background-color: #2a9df4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .next-button:hover {
+            background-color: #2a9df4;
+        }
+        
+        .help-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+            z-index: 15;
+        }
+        
+        .help-icon:hover {
+            background-color: #0056b3;
+        }
+        
+        .modal-background {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 14;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 20;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 400px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .modal-header h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+        
+        .modal-header .close {
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .modal-header .close:hover {
+            color: #ff0000;
+        }
+        
+        .modal-body {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 2px 15px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #0056b3;
+        }
+
+        #ine {
+            display: none;
+        }
+
+        .fanid-item {
+            background: #e6e6e6;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .fanid-item:hover {
+            background: #d4d4d4;
+            transform: scale(1.05);
+        }
+
+        .fanid-item.selected {
+            background: lightgreen;
+        }
+
+        .notification {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 30;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu-button" id="menuButton">&#9776;</div>
+        <div class="dropdown-content" id="dropdownMenu">
+            <a href="HomePage.html">Inicio</a>
+            <a href="Ver_Eventos_C.html">Eventos</a>
+            <a href="Generar_FanID.html">Generar FanID</a>
+            <a href="#" class="active">Compra</a>
+            <a href="Mis_Solicitudes.html">Mis solicitudes</a>
+            <a href="Mis_Boletos.html">Mis boletos</a>
+            <a href="Boletos_Pendientes.html">Boletos pendientes</a> 
+            <a href="Home_Organizador.html">Módulo de Organizador</a>
+        </div>
+        <div class="title">Proceso de Compra</div>
+        <div class="user-profile">
+            <i class="fas fa-user profile-icon"></i>
+            <span class="username">Nombre de Usuario <br> Cerrar Sesión</span>
+        </div>
+    </header>
+
+    <div class="progress-bar">
+        <div class="step"><i class="fa fa-ticket-alt"></i><p>Información del Boleto</p></div>
+        <div class="step"><i class="fa fa-couch"></i><p>Seleccionar Asiento</p></div>
+        <div class="step"><i class="fa fa-credit-card"></i><p>Método de Pago</p></div>
+        <div class="step active"><i class="fa fa-id-badge"></i><p>Generar FanID</p></div>
+        <div class="step"><i class="fa fa-check-circle"></i><p>Finalizar Compra</p></div>
+    </div>
+
+    <div class="container">
+        <div class="form-section">
+            <form>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre">
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" name="apellidos">
+                <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
+                <label for="lugar_nacimiento">Lugar de Nacimiento:</label>
+                <input type="text" id="lugar_nacimiento" name="lugar_nacimiento">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono">
+                <label for="domicilio">Domicilio:</label>
+                <input type="text" id="domicilio" name="domicilio">
+                <label for="ine">Subir INE:</label>
+                <label for="ine" class="custom-file-upload">
+                    <i class="fa fa-cloud-upload"></i> Seleccionar archivo
+                </label>
+                <input type="file" id="ine" name="ine">
+                <div class="btnSiguiente hidden">
+                    <button class="next-button">Siguiente</button>
+                </div>        
+            </form>
+        </div>
+        <div class="fanid-section">
+            <h2>Ya tienes FanID, Selecciona uno:</h2>
+            <div class="fanid-item" data-id="1">
+                <p>Nombre: Juan Pérez</p>
+                <p>Apellidos: López</p>
+                <p>Fecha de Nacimiento: 1990-01-01</p>
+                <p>Lugar de Nacimiento: Ciudad de México</p>
+                <p>Teléfono: 555-555-5555</p>
+                <p>Domicilio: Calle Falsa 123</p>
+            </div>
+            <div class="fanid-item" data-id="2">
+                <p>Nombre: María García</p>
+                <p>Apellidos: Rodríguez</p>
+                <p>Fecha de Nacimiento: 1985-05-05</p>
+                <p>Lugar de Nacimiento: Monterrey</p>
+                <p>Teléfono: 555-555-5555</p>
+                <p>Domicilio: Avenida Siempre Viva 742</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="help-icon" id="helpIcon">?</div>
+    <div class="modal-background" id="modalBackground"></div>
+    <div class="modal" id="helpModal">
+        <div class="modal-header">
+            <h2>¿Por qué los necesitamos?</h2>
+            <span class="close" id="closeModal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p>Se requieren documentos oficiales que permitan verificar la identidad tanto tuya como el resto de los asistentes, esto para su seguridad y la tuya.</p>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">Fan ID seleccionado</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var btnSiguiente = document.querySelector('.next-button');
+            btnSiguiente.addEventListener('click', function(event) {
+                event.preventDefault();
+                window.location.href = '../html/PagoBoleto_FinalizarCompra.html';
+            });
+
+            var fanidItems = document.querySelectorAll('.fanid-item');
+            var notification = document.getElementById('notification');
+
+            fanidItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    fanidItems.forEach(function(i) {
+                        i.classList.remove('selected');
+                    });
+                    item.classList.add('selected');
+                    notification.style.display = 'block';
+                    setTimeout(function() {
+                        notification.style.display = 'none';
+                        window.location.href = 'PagoBoleto_FinalizarCompra.html';
+                    }, 2500);
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuButton = document.getElementById('menuButton');
+            var dropdownMenu = document.getElementById('dropdownMenu');
+
+            function showMenu() {
+                dropdownMenu.style.display = 'block';
+            }
+
+            function hideMenu() {
+                dropdownMenu.style.display = 'none';
+            }
+
+            menuButton.addEventListener('mouseenter', showMenu);
+            menuButton.addEventListener('mouseleave', function() {
+                setTimeout(function() {
+                    if (!dropdownMenu.matches(':hover')) {
+                        hideMenu();
+                    }
+                }, 200);
+            });
+
+            dropdownMenu.addEventListener('mouseenter', showMenu);
+            dropdownMenu.addEventListener('mouseleave', hideMenu);
+
+            var stepUrls = [
+                "PagoBoleto_InformacionDelBoleto.html",
+                "PagoBoleto_SeleccionarAsiento.html",
+                "PagoBoleto_MetodoPago.html",
+                "PagoBoleto_GenerarFanID.html",
+                "PagoBoleto_FinalizarCompra.html"
+            ];
+
+            var steps = document.querySelectorAll('.step');
+            var currentStepIndex = findActiveStepIndex(steps);
+
+            steps.forEach(function(step, index) {
+                step.addEventListener('click', function() {
+                    if (index < currentStepIndex) {
+                        window.location.href = stepUrls[index];
+                    }
+                });
+            });
+
+            function findActiveStepIndex(steps) {
+                for (var i = 0; i < steps.length; i++) {
+                    if (steps[i].classList.contains('active')) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+        });
+
+        // Modal script
+        document.addEventListener('DOMContentLoaded', function() {
+            var helpIcon = document.getElementById('helpIcon');
+            var helpModal = document.getElementById('helpModal');
+            var closeModal = document.getElementById('closeModal');
+            var modalBackground = document.getElementById('modalBackground');
+
+            helpIcon.addEventListener('click', function() {
+                helpModal.style.display = 'block';
+                modalBackground.style.display = 'block';
+            });
+
+            closeModal.addEventListener('click', function() {
+                helpModal.style.display = 'none';
+                modalBackground.style.display = 'none';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target == modalBackground) {
+                    helpModal.style.display = 'none';
+                    modalBackground.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de Boletos para Paul McCartney</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="icon" href="../assets/img/Logotipo_Final.png" type="image/x-icon">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .menu-button {
+            font-size: 24px;
+            cursor: pointer;
+            position: relative;
+            z-index: 11;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #000;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover, .dropdown-content a.active {
+            background-color: #575757;
+        }
+
+        .title {
+            font-size: 18px;
+            margin: 0 10px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .profile-icon {
+            font-size: 24px;
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .username {
+            font-size: 16px;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            background-color: #f0f0f0;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px 40px;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            left: 10%; 
+            right: 10%;
+            height: 2px;
+            background-color: #ccc;
+            top: 50%;
+            z-index: 0;
+        }
+
+        .step {
+            text-align: center;
+            flex-grow: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step i {
+            background-color: #ddd;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 24px;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .step p {
+            margin: 8px 0 0;
+            font-size: 14px;
+        }
+
+        .step.active i {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .event-info {
+            flex: 1;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .event-info h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .event-info p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .event-info strong {
+            color: #000;
+            font-weight: bold;
+        }
+
+        .event-image {
+            flex: 1;
+            margin-left: 20px;
+            position: relative;
+            width: 45%;
+            overflow: hidden;
+            min-height: 300px;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
+
+        .carousel-image {
+            width: 100%;
+            height: auto;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease-out;
+        }
+
+        .carousel-image.active {
+            display: block;
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .event-image:hover .carousel-button {
+            opacity: 1;
+        }
+
+        .carousel-button.prev {
+            left: 0;
+        }
+
+        .carousel-button.next {
+            right: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .next-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .next-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu-button" id="menuButton">&#9776;</div>
+        <div class="dropdown-content" id="dropdownMenu">
+            <a href="HomePage.html">Inicio</a>
+            <a href="Ver_Eventos_C.html" class="active">Eventos</a>
+            <a href="Generar_FanID.html">Generar FanID</a>
+            <a href="#">Compra</a>
+            <a href="Mis_Solicitudes.html">Mis solicitudes</a>
+            <a href="Mis_Boletos.html">Mis boletos</a>
+            <a href="Boletos_Pendientes.html">Boletos pendientes</a>
+            <a href="Home_Organizador.html">Módulo de Organizador</a>
+        </div>
+        <div class="title">Proceso de Compra</div>
+        <div class="user-profile">
+            <i class="fas fa-user profile-icon"></i>
+            <span class="username">Nombre de Usuario <br> Cerrar Sesión</span>        </div>
+    </header>
+    
+    <div class="progress-bar">
+        <div class="step active"><i class="fa fa-ticket-alt"></i><p>Información del Boleto</p></div>
+        <div class="step"><i class="fa fa-couch"></i><p>Seleccionar Asiento</p></div>
+        <div class="step"><i class="fa fa-credit-card"></i><p>Método de Pago</p></div>
+        <div class="step"><i class="fa fa-id-badge"></i><p>Generar FanID</p></div>
+        <div class="step"><i class="fa fa-check-circle"></i><p>Finalizar Compra</p></div>
+    </div>
+
+    <div class="container">
+        <div class="event-info">
+            <h1>Paul McCartney Got Back</h1>
+            <p><strong>Fecha:</strong> 4 Mayo 2024, Sábado</p>
+            <p><strong>Hora:</strong> 20:00 hrs</p>
+            <p><strong>Lugar:</strong> Estadio C.U, Avenida de los Insurgentes, Ciudad de México, CP 04510</p>
+            <p><strong>Descripción:</strong> Vive una noche inolvidable con Paul McCartney en un concierto que recorre las melodías que definieron varias generaciones. Desde los clásicos de The Beatles hasta sus éxitos en solitario, cada canción cuenta la historia de una era.</p>
+        </div>
+        <div class="event-image">
+            <div class="carousel">
+                <img src="../assets/img/paul2.webp" alt="Image 1" class="carousel-image active">
+                <img src="../assets/img/paul3.webp" alt="Image 2" class="carousel-image">
+                <img src="../assets/img/paul4.webp" alt="Image 3" class="carousel-image">
+                <img src="../assets/img/paul5.webp" alt="Image 4" class="carousel-image">
+            </div>
+            <button class="carousel-button prev">&#10094;</button>
+            <button class="carousel-button next">&#10095;</button>
+        </div>
+    </div>
+
+    <footer>
+        <button class="next-button">Siguiente</button>
+    </footer>
+    <script src="../js/PagoBoleto_InformacionDelBoleto.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuButton = document.getElementById('menuButton');
+            var dropdownMenu = document.getElementById('dropdownMenu');
+
+            function showMenu() {
+                dropdownMenu.style.display = 'block';
+            }
+
+            function hideMenu() {
+                dropdownMenu.style.display = 'none';
+            }
+
+            menuButton.addEventListener('mouseenter', showMenu);
+            menuButton.addEventListener('mouseleave', function() {
+                setTimeout(function() {
+                    if (!dropdownMenu.matches(':hover')) {
+                        hideMenu();
+                    }
+                }, 200);
+            });
+
+            dropdownMenu.addEventListener('mouseenter', showMenu);
+            dropdownMenu.addEventListener('mouseleave', hideMenu);
+
+            var images = document.querySelectorAll('.carousel-image');
+            var currentIndex = 0;
+            var prevButton = document.querySelector('.carousel-button.prev');
+            var nextButton = document.querySelector('.carousel-button.next');
+
+            function showImage(index) {
+                images[currentIndex].classList.remove('active');
+                images[index].classList.add('active');
+                currentIndex = index;
+            }
+
+            prevButton.addEventListener('click', function() {
+                var nextIndex = currentIndex > 0 ? currentIndex - 1 : images.length - 1;
+                showImage(nextIndex);
+            });
+
+            nextButton.addEventListener('click', function() {
+                var nextIndex = currentIndex < images.length - 1 ? currentIndex + 1 : 0;
+                showImage(nextIndex);
+            });
+        });
+    </script>
+</body>
+</html>
