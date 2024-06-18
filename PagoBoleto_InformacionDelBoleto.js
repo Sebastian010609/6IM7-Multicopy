@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.next-button').addEventListener('click', () => {
         changeImage(1);
         // Redirecciona al siguiente documento HTML
-        window.location.href = '../html/PagoBoleto_SeleccionarAsiento.html';
+        window.location.href = 'PagoBoleto_SeleccionarAsiento.html';
     });
     document.querySelector('.prev').addEventListener('click', () => changeImage(-1));
 
