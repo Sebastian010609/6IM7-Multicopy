@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ticketInfos.forEach(function(ticket) {
         ticket.addEventListener('click', function() {
             // Aquí solo necesitas poner la URL de la página a la que todos deben ser redirigidos
-            window.location.href = '../html/PagoBoleto_MetodoPago.html';
+            window.location.href = 'PagoBoleto_MetodoPago.html';
         });
     });
 });
