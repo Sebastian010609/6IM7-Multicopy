@@ -29,7 +29,7 @@ function showNextButton() {
     var nextButtonDiv = document.querySelector('.btnSiguiente');
     nextButtonDiv.style.display = 'block'; // Muestra el botón "Siguiente"
     nextButtonDiv.querySelector('.next-button').addEventListener('click', function() {
-        window.location.href = '../html/PagoBoleto_GenerarFanID.html'; // Cambia 'siguiente_pagina.html' por la URL a la que deseas redirigir
+        window.location.href = 'PagoBoleto_GenerarFanID.html'; // Cambia 'siguiente_pagina.html' por la URL a la que deseas redirigir
     });
 }
 
