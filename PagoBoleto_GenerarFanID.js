@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var btnSiguiente = document.querySelector('.next-button'); // Asegúrate de que el selector coincida con tu botón
     btnSiguiente.addEventListener('click', function(event) {
         event.preventDefault(); // Previene el comportamiento por defecto del formulario
-        window.location.href = '../html/PagoBoleto_FinalizarCompra.html'; // Redirecciona al usuario al archivo siguiente.html
+        window.location.href = 'PagoBoleto_FinalizarCompra.html'; // Redirecciona al usuario al archivo siguiente.html
     });
 });
 
