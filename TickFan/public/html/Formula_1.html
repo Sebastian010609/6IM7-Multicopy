@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evento Detalles</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="icon" href="../assets/img/Logotipo_Final.png" type="image/x-icon">
+    <style>
+        /* General styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .menu-button {
+            font-size: 24px;
+            cursor: pointer;
+            position: relative;
+            z-index: 11;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #000;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover, .dropdown-content a.active {
+            background-color: #575757;
+        }
+
+        .title {
+            font-size: 18px;
+            margin: 0 10px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .profile-icon {
+            font-size: 24px;
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .username {
+            font-size: 16px;
+        }
+
+        .main-content {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .event-details {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .event-info {
+            width: 60%;
+        }
+
+        .event-info h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            background: #f4f6f7;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .event-info .info-box {
+            background: #f4f6f7;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+
+        .event-image {
+            width: 35%;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .event-image img {
+            border-radius: 12px;
+            width: 100%;
+            height: auto;
+        }
+
+        .warning-icon {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: #e74c3c;
+            border-radius: 50%;
+            padding: 15px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 24px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .button-left {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .button-left:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .button-center {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            position: absolute;
+            left: 50%;
+        }
+
+        .button-center:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .line {
+            margin: 20px 0;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu-button" id="menuButton">&#9776;</div>
+        <div class="dropdown-content" id="dropdownMenu">
+            <a href="HomePage.html">Inicio</a>
+            <a href="#" class="active">Eventos</a>
+            <a href="Generar_FanID.html">Generar FanID</a>
+            <a href="PagoBoleto_InformacionDelBoleto.html">Compra</a>
+            <a href="Mis_Solicitudes.html">Mis solicitudes</a>
+            <a href="Mis_Boletos.html">Mis boletos</a>
+            <a href="Boletos_Pendientes.html">Boletos pendientes</a>
+            <a href="Home_Organizador.html">Módulo de Organizador</a>
+        </div>
+        <div class="title">Eventos</div>
+        <div class="user-profile">
+            <i class="fas fa-user profile-icon"></i>
+            <span class="username">Nombre de Usuario <br> Cerrar Sesión</span>        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="event-details">
+            <div class="event-info">
+                <h2>Gran Premio F1</h2>
+                <div class="info-box">
+                    <p><strong>Información del evento:</strong></p>
+                    <p>Fecha: 20 de Septiembre 2024</p>
+                    <p>Lugar: Foro Sol</p>
+                    <p>Cupos: 37,500</p>
+                    <p>Solicitudes Actuales: 34,342</p>
+                </div>
+            </div>
+            <div class="event-image">
+                <img src="../assets/img/Formula_1.jpg" alt="Evento Imagen">
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button class="button-left" onclick="window.location.href='Ver_Mas_Eventos.html'">Regresar</button>
+        <button class="button-center"onclick="window.location.href='PagoBoleto_InformacionDelBoleto.html'">Comprar Boleto</button>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>¿Qué significa este símbolo?</h2>
+            <div class="line"></div>
+            <p>En este evento las Solicitudes Actuales han sobrepasado a los cupos que tiene el lugar.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuButton = document.getElementById('menuButton');
+            var dropdownMenu = document.getElementById('dropdownMenu');
+
+            function showMenu() {
+                dropdownMenu.style.display = 'block';
+            }
+
+            function hideMenu() {
+                dropdownMenu.style.display = 'none';
+            }
+
+            menuButton.addEventListener('mouseenter', showMenu);
+            menuButton.addEventListener('mouseleave', function() {
+                setTimeout(function() {
+                    if (!dropdownMenu.matches(':hover')) {
+                        hideMenu();
+                    }
+                }, 200);
+            });
+
+            dropdownMenu.addEventListener('mouseenter', showMenu);
+            dropdownMenu.addEventListener('mouseleave', hideMenu);
+
+            var modal = document.getElementById("modal");
+            var warningIcon = document.getElementById("warningIcon");
+            var closeModal = document.getElementById("closeModal");
+
+            warningIcon.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            closeModal.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

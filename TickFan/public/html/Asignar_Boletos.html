@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignar Boletos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="icon" href="../assets/img/Logotipo_Final.png" type="image/x-icon">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+            height: 100%;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .menu-button {
+            font-size: 24px;
+            cursor: pointer;
+            position: relative;
+            z-index: 11;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #000;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover, .dropdown-content a.active {
+            background-color: #575757;
+        }
+
+        .title {
+            font-size: 18px;
+            margin: 0 10px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .profile-icon {
+            font-size: 24px;
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .username {
+            font-size: 16px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            margin: 20px;
+            height: calc(100% - 160px); /* Adjusted for header and footer */
+        }
+
+        .list-container {
+            width: 45%;
+            max-height: 100%;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .list-container h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .list-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .list-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .list-item:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .direct-assignment-button {
+            background-color: #5cb85c;
+            color: white;
+        }
+
+        .direct-assignment-button:hover {
+            background-color: #449d44;
+            transform: scale(1.05);
+        }
+
+        .random-assignment-button {
+            background-color: #f0ad4e;
+            color: white;
+        }
+
+        .random-assignment-button:hover {
+            background-color: #ec971f;
+            transform: scale(1.05);
+        }
+
+        .back-button {
+            background-color: #d9534f;
+            color: white;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .back-button:hover {
+            background-color: #b52b27;
+            transform: scale(1.05);
+        }
+
+        .finish-button {
+            background-color: #007bff;
+            color: white;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .finish-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .assigned {
+            background-color: #d9edf7 !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu-button" id="menuButton">&#9776;</div>
+        <div class="dropdown-content" id="dropdownMenu">
+            <a href="Home_Organizador.html">Inicio</a>
+            <a href="Ver_Eventos.html">Eventos</a>
+            <a href="SubirEvento.html">Subir Eventos</a>
+            <a href="HomePage.html">Módulo Comprador</a>
+        </div>
+        <div class="title">Asignar Boletos</div>
+        <div class="user-profile">
+            <i class="fas fa-user profile-icon"></i>
+            <span class="username">Nombre del Organizador <br> Cerrar Sesión </span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="list-container" id="seatsContainer">
+            <h2>Asientos</h2>
+            <!-- Example of seat items -->
+            <div class="list-item" data-id="1">Asiento 1: Sección A, Puerta 1</div>
+            <div class="list-item" data-id="2">Asiento 2: Sección A, Puerta 1</div>
+            <div class="list-item" data-id="3">Asiento 3: Sección B, Puerta 2</div>
+            <div class="list-item" data-id="4">Asiento 4: Sección B, Puerta 2</div>
+            <div class="list-item" data-id="5">Asiento 5: Sección C, Puerta 3</div>
+            <div class="list-item" data-id="6">Asiento 6: Sección C, Puerta 3</div>
+            <div class="list-item" data-id="7">Asiento 7: Sección D, Puerta 4</div>
+            <div class="list-item" data-id="8">Asiento 8: Sección D, Puerta 4</div>
+            <div class="list-item" data-id="9">Asiento 9: Sección E, Puerta 5</div>
+            <div class="list-item" data-id="10">Asiento 10: Sección E, Puerta 5</div>
+            <!-- Add more seat items here -->
+        </div>
+
+        <div class="list-container" id="usersContainer">
+            <h2>Solicitantes</h2>
+            <!-- Example of user items -->
+            <div class="list-item" data-id="1">Usuario 1: Juan Pérez</div>
+            <div class="list-item" data-id="2">Usuario 2: María García</div>
+            <div class="list-item" data-id="3">Usuario 3: Pedro Sánchez</div>
+            <div class="list-item" data-id="4">Usuario 4: Ana López</div>
+            <div class="list-item" data-id="5">Usuario 5: Luis Gómez</div>
+            <div class="list-item" data-id="6">Usuario 6: Marta Díaz</div>
+            <div class="list-item" data-id="7">Usuario 7: José Fernández</div>
+            <div class="list-item" data-id="8">Usuario 8: Laura Ortiz</div>
+            <div class="list-item" data-id="9">Usuario 9: Carlos Ruiz</div>
+            <div class="list-item" data-id="10">Usuario 10: Elena Márquez</div>
+            <!-- Add more user items here -->
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button class="direct-assignment-button" onclick="directAssignment()">Asignación Directa</button>
+        <button class="random-assignment-button" onclick="randomAssignment()">Asignación Aleatoria</button>
+    </div>
+
+    <button class="back-button" onclick="window.location.href='Eventos_Organizador.html'">Volver</button>
+    <button class="finish-button" onclick="window.location.href='Home_Organizador.html'">Finalizar</button>
+
+    
+
+    <script>
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        function directAssignment() {
+            const seats = document.querySelectorAll('#seatsContainer .list-item');
+            const users = document.querySelectorAll('#usersContainer .list-item');
+            const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50'];
+
+            seats.forEach((seat, index) => {
+                if (index < users.length) {
+                    const user = users[index];
+                    const color = colors[index % colors.length];
+                    seat.style.backgroundColor = color;
+                    user.style.backgroundColor = color;
+                }
+            });
+        }
+
+        function randomAssignment() {
+            const seats = document.querySelectorAll('#seatsContainer .list-item');
+            const users = document.querySelectorAll('#usersContainer .list-item');
+            const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50'];
+            const usedIndices = new Set();
+
+            seats.forEach(seat => {
+                let userIndex;
+                do {
+                    userIndex = getRandomInt(users.length);
+                } while (usedIndices.has(userIndex));
+                usedIndices.add(userIndex);
+
+                const user = users[userIndex];
+                const color = colors[usedIndices.size % colors.length];
+                seat.style.backgroundColor = color;
+                user.style.backgroundColor = color;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuButton = document.getElementById('menuButton');
+            var dropdownMenu = document.getElementById('dropdownMenu');
+
+            function showMenu() {
+                dropdownMenu.style.display = 'block';
+            }
+
+            function hideMenu() {
+                dropdownMenu.style.display = 'none';
+            }
+
+            menuButton.addEventListener('mouseenter', showMenu);
+            menuButton.addEventListener('mouseleave', function() {
+                setTimeout(function() {
+                    if (!dropdownMenu.matches(':hover')) {
+                        hideMenu();
+                    }
+                }, 200);
+            });
+
+            dropdownMenu.addEventListener('mouseenter', showMenu);
+            dropdownMenu.addEventListener('mouseleave', hideMenu);
+        });
+    </script>
+</body>
+</html>
